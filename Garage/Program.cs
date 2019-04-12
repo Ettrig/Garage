@@ -15,7 +15,9 @@ namespace Garage
                             + "\n2. List the vehicles in the garage."
                             + "\n3. Park a vehicle in the garage."
                             + "\n4. Remove a vehicle from the garage."
-                            + "\n0. Exit the application");
+                            + "\n5. Store the garage on disk."
+                            + "\n6. Show a vehicle."
+                            + "\n7. Close down the program.");
         }
     }
 }
