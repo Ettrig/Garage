@@ -10,6 +10,12 @@ namespace Garage
         {
             Console.WriteLine("This is the GARAGE application");
             Console.WriteLine("What do you want to do");
+            Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
+                            + "\n1. Build the garage."
+                            + "\n2. List the vehicles in the garage."
+                            + "\n3. Park a vehicle in the garage."
+                            + "\n4. Remove a vehicle from the garage."
+                            + "\n0. Exit the application");
         }
     }
 }
