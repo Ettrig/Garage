@@ -39,12 +39,11 @@ namespace GarageProject
                 }
             }
 
-
             object IEnumerator.Current => Current;
 
             public void Dispose()
             {
-                throw new NotImplementedException();
+                return;
             }
 
             public bool MoveNext()
@@ -71,28 +70,46 @@ namespace GarageProject
             return (IEnumerator<T>) new GarageEnumerator<Vehicle>(vehicles);
         }
 
-        private IEnumerator GetEnumerator1()
-        {
-            return this.GetEnumerator();
-        }
-
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator1();
+            return GetEnumerator();
         }
 
         public bool AddVehicle(Vehicle theVehicle)
         {
             int i=0; 
             // GarageHandler 
-            while (i<vehicles.Length && vehicles[i] != null) i++;
-            if (i >= vehicles.Length) return false;
+            while (i<capacity && vehicles[i] != null) i++;
+            if (i >= capacity) return false;
             else
             {
                 vehicles[i] = theVehicle;
                 count = count + 1;
                 return true;
             } 
+        }
+
+        private int FindVehicleIndex(string license)
+        {
+            int i = 0;
+            while (i < capacity && (vehicles[i] == null || vehicles[i].License != license)) i++;
+            if (i >= capacity) return -17;
+            return i; 
+        }
+
+        public bool RemoveVehicle( string license)
+        {
+            var indx = FindVehicleIndex(license);
+            if (indx<0) return false;
+            vehicles[indx] = null;
+            return true; 
+        }
+
+        public Vehicle FindVehicle( string license)
+        {
+            int i = FindVehicleIndex(license);
+            if (i < 0) return null;
+            return vehicles[i]; 
         }
     }
 }
